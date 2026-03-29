@@ -1,0 +1,53 @@
+# Dataset hyperparameters: aru
+# Shared across baselines (deep learning + optional classical baselines).
+
+# --- Shared alignment bounds ---
+max_error: 0.5
+window_size: 0.5
+
+# --- Deep learning: training ---
+n_epochs: 25
+train_batch_size: 32
+val_batch_size: 8
+val_max_batches: 0
+lr: 3.0e-4
+pos_loss_weight: 1.0
+
+# Auxiliary loss: legacy-style within-batch contrastive matching (convex weight in [0, 1])
+lambda_contrastive: 0.0
+
+min_neg_offset: 0.10
+neg_curriculum_epochs: 8
+neg_curriculum_min_abs: 0.25
+neg_prob: 0.5
+
+time_bins: 8
+unfreeze_last_n_layers: 2
+encoder_lr_mult: 0.03
+
+# --- Deep learning: inference ---
+keypoint_stride: 8
+offset_step: 0.02
+score_mode: sum_prob
+
+# Inference mode
+global_affine_search: false
+
+dp_lambda: 0.2
+infer_batch_size: 16
+
+# Refinement controls
+disable_refinement: false
+refine_half_width_sec: null
+
+# --- Silence gating ---
+silence_mode: auto_hist
+silence_policy: interp
+silence_hist_bins: 64
+silence_percentile_fallback: 5.0
+
+# --- GCC-PHAT baseline (optional; tuned via GA search) ---
+gccphat_window_size: 0.27
+gccphat_no_hann: true
+gccphat_smooth_lambda: 10.83
+gccphat_smooth_step: 0.005

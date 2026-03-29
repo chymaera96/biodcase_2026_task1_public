@@ -1,0 +1,54 @@
+# Dataset hyperparameters: zebra_finch (coarse regime)
+# Shared across baselines (deep learning + optional classical baselines).
+
+# --- Shared alignment bounds ---
+max_error: 5.0
+window_size: 1.0
+
+# --- Deep learning: training ---
+n_epochs: 25
+train_batch_size: 64
+val_batch_size: 4
+val_max_batches: 0
+lr: 1.0e-4
+pos_loss_weight: 1.0
+
+# Auxiliary loss: legacy-style within-batch contrastive matching (convex weight in [0, 1])
+lambda_contrastive: 0.5
+
+min_neg_offset: 0.5
+neg_curriculum_epochs: 25
+neg_curriculum_min_abs: 1.5
+neg_prob: 0.5
+
+time_bins: 1
+unfreeze_last_n_layers: 0
+encoder_lr_mult: 0.1
+
+# --- Deep learning: inference ---
+keypoint_stride: 1
+offset_step: 0.10
+score_mode: sum_logits
+
+# Inference mode
+global_affine_search: true
+global_affine_n_per_axis: 5
+
+dp_lambda: 0.0
+infer_batch_size: 64
+
+# Refinement controls
+disable_refinement: true
+refine_half_width_sec: 0.5
+
+# --- Silence gating ---
+silence_mode: auto_hist
+silence_policy: skip
+silence_hist_bins: 128
+silence_percentile_fallback: 5.0
+
+# --- GCC-PHAT baseline (optional; tuned via GA search) ---
+gccphat_window_size: 2.50
+gccphat_no_hann: true
+gccphat_smooth_lambda: 0.0
+gccphat_smooth_step: 0.2
